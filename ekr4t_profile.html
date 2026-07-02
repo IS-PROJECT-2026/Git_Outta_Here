@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emmanuel Keter | IT Engineering Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Karla:wght@300;400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #071219;
+      --panel: rgba(255,255,255,0.94);
+      --ink: #10313a;
+      --muted: #5e7480;
+      --accent: #1f9d8d;
+      --accent-2: #f08f5f;
+      --border: rgba(16,49,58,0.12);
+      --shadow: 0 18px 40px rgba(0,0,0,0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Karla', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(31,157,141,0.24), transparent 30%),
+        linear-gradient(135deg, #081722 0%, #0c2230 100%);
+      min-height: 100vh;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 280px;
+      height: 280px;
+      background: var(--accent);
+      top: -90px;
+      left: -80px;
+    }
+
+    body::after {
+      width: 320px;
+      height: 320px;
+      background: var(--accent-2);
+      bottom: -120px;
+      right: -100px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      color: #f5f3ec;
+    }
+
+    .back-link {
+      color: #f5f3ec;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .status-pill {
+      background: rgba(255,255,255,0.15);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #f5f3ec;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,248,250,0.95));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 8px;
+      background: rgba(31,157,141,0.12);
+      color: var(--accent);
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.3rem, 5vw, 3.5rem);
+      margin: 0 0 10px;
+      line-height: 0.95;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .intro {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .typed-row {
+      margin: 12px 0 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .typed {
+      color: var(--accent-2);
+      display: inline-block;
+      min-width: 120px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 24px rgba(31,157,141,0.28);
+    }
+
+    .btn.ghost {
+      color: var(--ink);
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .hero-visual {
+      background: linear-gradient(145deg, #0f2a35, #173c49);
+      border-radius: 24px;
+      padding: 24px;
+      color: white;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      display: grid;
+      gap: 14px;
+      min-height: 300px;
+    }
+
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    }
+
+    .quote {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.08);
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      font-size: 1.15rem;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0 0 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #f4f7f9;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--ink);
+      transition: all 180ms ease;
+    }
+
+    .chip.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .skills {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .skill {
+      display: grid;
+      gap: 6px;
+    }
+
+    .skill strong {
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: #e7ecef;
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f6fbfc;
+      border: 1px solid rgba(16,49,58,0.08);
+    }
+
+    .timeline-item strong { color: var(--ink); }
+
+    .timeline-item span { display: block; color: var(--muted); margin-top: 3px; }
+
+    @media (max-width: 800px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="back-link" href="index.html">← Back to group portfolio</a>
+      <span class="status-pill">Capstone • ICS 4</span>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Emmanuel Keter</p>
+        <h1>IT Engineering <span class="accent">Enthusiast</span></h1>
+        <p class="intro">
+          I am a curious builder who enjoys solving problems with technology, learning new tools quickly, and turning ideas into practical digital experiences.
+        </p>
+        <div class="typed-row">
+          <span>Currently exploring:</span>
+          <span class="typed" data-phrases="['Web Development','Automation','Problem Solving','Innovation']"></span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="mailto:emmanuel@example.com">Say hello</a>
+          <a class="btn ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="avatar">EK</div>
+        <div class="quote">“I believe great engineering starts with curiosity, consistency, and the courage to build.”</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>About me</h2>
+        <p>
+          Emmanuel is energetic, thoughtful, and deeply interested in how technology can be used to improve everyday life. He enjoys learning by doing, testing ideas, and staying curious about systems, design, and problem solving.
+        </p>
+        <p>
+          His style is practical and forward-looking: he likes to create things that are useful, clear, and polished without losing the human side of technology.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>What I enjoy</h2>
+        <div class="chips">
+          <span class="chip active">Coding</span>
+          <span class="chip">Debugging</span>
+          <span class="chip">Web Design</span>
+          <span class="chip">Automation</span>
+          <span class="chip">AI curiosity</span>
+        </div>
+        <p style="margin-top: 12px;">
+          He is especially motivated by projects that combine creativity with structure, whether it is building websites, improving workflows, or exploring smarter ways to solve real-world problems.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill">
+            <strong>Python</strong>
+            <div class="bar"><i style="--w: 86%"></i></div>
+          </div>
+          <div class="skill">
+            <strong>HTML & CSS</strong>
+            <div class="bar"><i style="--w: 90%"></i></div>
+          </div>
+          <div class="skill">
+            <strong>JavaScript</strong>
+            <div class="bar"><i style="--w: 78%"></i></div>
+          </div>
+          <div class="skill">
+            <strong>Problem Solving</strong>
+            <div class="bar"><i style="--w: 92%"></i></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Current focus</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Capstone work</strong>
+            <span>Building a polished portfolio experience and shaping a strong group presentation.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Learning</strong>
+            <span>Strengthening engineering fundamentals and exploring modern web tools.</span>
+          </div>
+          <div class="timeline-item">
+            <strong>Growth</strong>
+            <span>Combining creativity, logic, and persistence to become a more capable developer.</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const typed = document.querySelector('.typed');
+    const phrases = JSON.parse(typed.dataset.phrases.replace(/'/g, '"'));
+    let index = 0;
+    let charIndex = 0;
+
+    function typeLoop() {
+      const current = phrases[index];
+      typed.textContent = current.slice(0, charIndex);
+      charIndex += 1;
+
+      if (charIndex > current.length) {
+        setTimeout(() => {
+          charIndex = 0;
+          index = (index + 1) % phrases.length;
+          typeLoop();
+        }, 1200);
+        return;
+      }
+
+      setTimeout(typeLoop, 90);
+    }
+
+    typeLoop();
+
+    document.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
